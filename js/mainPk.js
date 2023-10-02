@@ -10,3 +10,9 @@ $(document).ready(function () {
         $('#xClose').hide();
      });
 });
+/*
+PARA EL COLOR DE CADA UNO DE LOS POKEMONS TENDRE QUE COGER EL ARRAY DE TIPOS 
+EL PRIMERO DE LOS ELEMENTOS Y DE ESTE EL NOMBRE Y COMPARANDOLO SEGUN EL TIPO
+PONER EL COLOR
+https://pokeapi.co/docs/v2
+*/
