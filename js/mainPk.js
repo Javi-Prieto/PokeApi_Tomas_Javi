@@ -1,8 +1,12 @@
 $(document).ready(function () {
     $(document).on('click', '#searchBtn', function () {
         $('#collapseSearch').show();
-        $(document).on('click', '#findBtn', function () { 
-            $('#collapseSearch').hide();
-         })
+        $('#searchBtn').hide();
+        $('#xClose').show();
     });
+    $(document).on('click', '.closeSearch', function () { 
+        $('#collapseSearch').hide();
+        $('#searchBtn').show();
+        $('#xClose').hide();
+     });
 });

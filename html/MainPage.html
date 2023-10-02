@@ -38,7 +38,8 @@
                 </ul>
               </li>
               <li class="nav-item dropdown">
-                <button class="nav-link text-end btn btn-outline-secondary" id="searchBtn"><i class="bi bi-search "></i></button>
+                <button class="nav-link text-end btn btn-outline-secondary " id="searchBtn"><i class="bi bi-search "></i></button>
+                <button class="nav-link text-end btn btn-outline-secondary closeSearch" id="xClose" style="display: none;"><i class="bi bi-x-lg"></i></button>
               </li> 
             </ul>
           </div>
@@ -47,7 +48,7 @@
         <div class="w-100 bg-dark " id="collapseSearch" style="display: none; ">
           <form class="d-flex">
             <input class="form-control me-2" type="text" placeholder="Search">
-            <button class="btn btn-primary" type="button" id="findBtn">Search</button>
+            <button class="btn btn-primary closeSearch" type="button" id="findBtn">Search</button>
           </form>
         </div>
       </nav>
