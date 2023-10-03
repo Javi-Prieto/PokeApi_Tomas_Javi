@@ -11,7 +11,7 @@ $(document).ready(function () {
      });
     $.ajax({
         type: "GET",
-        url: "https://pokeapi.co/api/v2/pokemon/"
+        url: "https://pokeapi.co/api/v2/pokemon/?limit=700"
     }).done(function(resp){
         var pokeList = resp.results;
         pokeList.forEach(i => {
@@ -20,7 +20,7 @@ $(document).ready(function () {
                 url: i.url
             }).done(function (poke) {
                 var template = `
-                <button type="button" class="col-xl-3 col-md-6 mb-2 mx-1 col-sm-12 pb-2 border border-3 border-warning rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(poke)};">
+                <button type="button" class="col-xl-3 col-md-6 mb-2 mx-1 col-sm-12 pb-2 border border-3 rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(poke)}!important;">
                     <div class="w-75">
                     <div class="row m-auto align-self-center p-1">
                         <div class="col-5 p-0"><img src="${poke.sprites.front_default}" alt="" class="w-75"/></div>
@@ -34,7 +34,7 @@ $(document).ready(function () {
         
     });
     function assignBorderColor(pokemon){
-        var type = pokemon.types[1].type.name;
+        var type = pokemon.types[0].type.name;
         switch (type) {
             case 'grass':
                 return '#7AC74C';
