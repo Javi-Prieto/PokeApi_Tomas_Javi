@@ -19,8 +19,11 @@ $(document).ready(function () {
                 type: "GET",
                 url: i.url
             }).done(function (poke) {
+
+                var pokeId = i.getId(url);
                 var template = `
-                <button type="button" class="col-xl-3 col-md-6 mb-2 mx-1 col-sm-12 pb-2 border border-3 rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(poke)}!important;">
+                <button type="button" id="${pokeId}" data-bs-toggle="modal" data-bs-target="#pokeModal" class="col-xl-3 col-md-6 mb-2 mx-1 col-sm-12 pb-2
+                 border border-3 rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(poke)}!important;">
                     <div class="w-75">
                     <div class="row m-auto align-self-center p-1">
                         <div class="col-5 p-0"><img src="${poke.sprites.front_default}" alt="" class="w-75"/></div>
@@ -79,6 +82,10 @@ $(document).ready(function () {
 
 
         }
+    }
+
+    function getId(url){
+        return url.charAt(url.length - 2);
     }
 });
 /*
