@@ -4,3 +4,15 @@ nav{
 img{
     width: 5%;
 }
+body{
+    background-image: url(../img/bg-img.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 125%;
+    background-position: -225px 0px;
+}
+.pokeCards{
+    background-color: rgb(235, 235, 235);
+    font-family: 'Press Start 2P', cursive;
+    font-size: x-large;
+}
