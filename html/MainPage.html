@@ -61,23 +61,26 @@
   </nav>
   <main class="container-fluid w-75 pt-5 m-auto ">
     <div class="row justify-content-around d-flex " id="pokeList">
-      <!-- Aquí se insertan los button -->
+      <!-- Aquí se inserta el template -->
     </div>
 
     <!-- MODAL -->
-    <div class="modal fade" id="pokeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="pokemonName"></h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  ...
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
+    <div class="modal modal-dialog modal-dialog-centered">
+
+      <div class="pokemonImageContainer">
+          <img id="pokemonImage"
+              src="https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/1e/latest/20210627205409/Jolteon.png/800px-Jolteon.png">
+      </div>
+
+      <div class="modal-content styleContent">
+          <div class="modal-body">
+              <p id="pokemonName">Name:</p>
+              <p id="pokemonType">Type:</p>
+              <p id="pokemonSpecies">Species:</p>
+              <p id="pokemonHeight">Height:</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">X</button>
           </div>
       </div>
   </div>

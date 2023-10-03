@@ -20,7 +20,7 @@ $(document).ready(function () {
                 url: i.url
             }).done(function (poke) {
 
-                var pokeId = i.getId(url);
+                var pokeId = poke.id;
                 var template = `
                 <button type="button" id="${pokeId}" data-bs-toggle="modal" data-bs-target="#pokeModal" class="col-xl-3 col-md-6 mb-2 mx-1 col-sm-12 pb-2
                  border border-3 rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(poke)}!important;">
@@ -87,6 +87,19 @@ $(document).ready(function () {
     function getId(url){
         return url.charAt(url.length - 2);
     }
+
+    // $(document).on("click",".pokeCards", function(){ 
+    //     var pokeId = $(".pokecards").id;
+
+    //     // Hago una llamada ajax usando este id específico
+
+    //     $.ajax({
+    //         type:'GET',
+    //         url: `https://pokeapi.co/api/v2/pokemon/${pokeId}`
+    //     }).done(function(){
+
+    //     })
+    // });
 });
 /*
 PARA EL COLOR DE CADA UNO DE LOS POKEMONS TENDRE QUE COGER EL ARRAY DE TIPOS 
