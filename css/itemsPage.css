@@ -1,16 +1,34 @@
-.bg{
-    background: url(../resources/bg.png);
-    height: 100vh;
+/* MAIN CSS */
+nav{
+    font-size: xx-large;
+}
+img{
+    width: 5%;
 }
 
-.table{
+
+/* ITEMS PAGE CSS */
+.bg {
+    background: url(../resources/bg.png);
+    height: 100vh;
+    background-repeat: repeat-y;
+    height: 100%;
+}
+
+.table {
     font-family: 'Press Start 2P', cursive;
     font-size: 1.5rem;
     width: 75vw;
     color: black;
-    background-color: #d9d9d9;
+    --bs-table-bg: #d9d9d9 !important;
+    --bs-table-border-color: black !important;
 }
 
-.tableBody{
+.tableBody {
     font-size: .8rem;
+}
+
+.table th:first-child,
+.table td:first-child {
+    max-width: 200px !important;
 }
