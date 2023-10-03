@@ -9,7 +9,7 @@ img{
 
 /* ITEMS PAGE CSS */
 .bg {
-    background: url(../resources/bg.png);
+    background: url(../img/bg.png);
     height: 100vh;
     background-attachment: fixed;
     height: 100%;
