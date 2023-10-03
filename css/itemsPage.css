@@ -1,0 +1,34 @@
+/* MAIN CSS */
+nav{
+    font-size: xx-large;
+}
+img{
+    width: 5%;
+}
+
+
+/* ITEMS PAGE CSS */
+.bg {
+    background: url(../resources/bg.png);
+    height: 100vh;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+.table {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    width: 75vw;
+    color: black;
+    --bs-table-bg: #d9d9d9 !important;
+    --bs-table-border-color: black !important;
+}
+
+.tableBody {
+    font-size: .8rem;
+}
+
+.table th:first-child,
+.table td:first-child {
+    max-width: 200px !important;
+}
