@@ -8,26 +8,27 @@ $(document).ready(function () {
         $('#collapseSearch').hide();
         $('#searchBtn').show();
         $('#xClose').hide();
-     });
+    });
 
-    const itemCount = 20;
-    const circleContainer = $("#circle-container");
-    const radius = 360; 
-    const angleStep = (2 * Math.PI) / itemCount;
 
-    for (var i = 0; i < itemCount; i++) {
-        const x = radius * Math.cos(i * angleStep) + radius;
-        const y = radius * Math.sin(i * angleStep) + radius;
+        const itemCount = 18;
+        const circleContainer = $("#circle-container");
+        const radius = 360; 
+        const angleStep = (2 * Math.PI) / itemCount;
 
-        var item = `
-            <div class = "circle-item" style= "top:${y}px; left:${x}px;">
-                ${i+1}
-            </div>
+        for (var i = 0; i < itemCount; i++) {
+            const x = radius * Math.cos(i * angleStep) + radius;
+            const y = radius * Math.sin(i * angleStep) + radius;
 
-        `;
-        circleContainer.hide();
-        circleContainer.append(item);
-    }
+            var item = `
+                <button class = "circle-item btn" style= "top:${y}px; left:${x}px;">
+                    <img src="../img/${i+1}.png" alt="" />
+                </button>
+
+            `;
+            circleContainer.hide();
+            circleContainer.append(item);
+        }
     $(document).on('click', '#showTypes', function () {
         circleContainer.show();
         $('#showTypes').hide();

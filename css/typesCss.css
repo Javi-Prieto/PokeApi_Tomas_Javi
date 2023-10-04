@@ -2,6 +2,7 @@ body {
     background: url(../img/bg.png);
     background-attachment: fixed;
     background-size: 100%;
+    overflow: hidden;
 }
 nav{
     font-size: xx-large;
@@ -11,17 +12,23 @@ main {
 }
 
 #circle-container {
-    width: 450px;
-    height: 600px;
+    right: 390px;
+    width: 0px;
     position: relative;
+    margin-top: 35px!important;
 }
-
+#closeTypes{
+    right: 46cqmax;
+    top: 20vmax;
+}
+#showTypes {
+    right: 46cqmax;
+    top: 20vmax;
+}
 .circle-item {
     position: absolute;
     width: 50px;
     height: 50px;
-    background-color: #3498db;
-    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
