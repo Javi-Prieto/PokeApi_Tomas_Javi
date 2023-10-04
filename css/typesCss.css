@@ -11,20 +11,6 @@ main {
     height: 100vh;
 }
 
-#circle-container {
-    right: 390px;
-    width: 0px;
-    position: relative;
-    margin-top: 35px!important;
-}
-#closeTypes{
-    right: 46cqmax;
-    top: 20vmax;
-}
-#showTypes {
-    right: 46cqmax;
-    top: 20vmax;
-}
 .circle-item {
     position: absolute;
     width: 50px;
