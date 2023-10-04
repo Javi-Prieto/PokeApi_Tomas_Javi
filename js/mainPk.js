@@ -4,15 +4,15 @@ $(document).ready(function () {
         $('#searchBtn').hide();
         $('#xClose').show();
     });
-    $(document).on('click', '.closeSearch', function () { 
+    $(document).on('click', '.closeSearch', function () {
         $('#collapseSearch').hide();
         $('#searchBtn').show();
         $('#xClose').hide();
-     });
+    });
     $.ajax({
         type: "GET",
         url: "https://pokeapi.co/api/v2/pokemon/?limit=700"
-    }).done(function(resp){
+    }).done(function (resp) {
         var pokeList = resp.results;
         pokeList.forEach(i => {
             $.ajax({
@@ -26,7 +26,7 @@ $(document).ready(function () {
                  border border-3 rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(poke)}!important;">
                     <div class="w-75">
                     <div class="row m-auto align-self-center p-1">
-                        <div class="col-5 p-0"><img src="${poke.sprites.front_default}" alt="" class="w-75"/></div>
+                        <div class="col-5 p-0"><img src="https://img.pokemondb.net/sprites/home/normal/${poke.name}.png" alt="" class="w-75"/></div>
                         <div class="col-6 text-center align-self-center p-0"><p class="text-start m-0">${poke.name}</p></div>
                     </div>
                     </div>
@@ -34,9 +34,9 @@ $(document).ready(function () {
                 $('#pokeList').append(template);
             });
         });
-        
+
     });
-    function assignBorderColor(pokemon){
+    function assignBorderColor(pokemon) {
         var type = pokemon.types[0].type.name;
         switch (type) {
             case 'grass':
@@ -84,22 +84,48 @@ $(document).ready(function () {
         }
     }
 
-    function getId(url){
+    function getId(url) {
         return url.charAt(url.length - 2);
     }
 
-    // $(document).on("click",".pokeCards", function(){ 
-    //     var pokeId = $(".pokecards").id;
+    $(document).on("click", ".pokeCards", function () {
+        var pokeId = $(this).attr("id");
 
-    //     // Hago una llamada ajax usando este id específico
+        // Hago una llamada ajax usando este id específico
 
-    //     $.ajax({
-    //         type:'GET',
-    //         url: `https://pokeapi.co/api/v2/pokemon/${pokeId}`
-    //     }).done(function(){
+        $.ajax({
+            type: 'GET',
+            url: `https://pokeapi.co/api/v2/pokemon/${pokeId}`
+        }).done(function (fullPokemon) {
 
-    //     })
-    // });
+            var types = "";
+
+            //Seteo toda la info
+            $('.modal-content').addClass(`${fullPokemon.types[0].type.name}`);
+            $('#pokemonImage').attr('src', `https://img.pokemondb.net/sprites/home/normal/${fullPokemon.name}.png`);
+            $('#pokemonName').text(`Name: ${fullPokemon.name}`);
+
+            $('#pokemonType').text(`Type: ${getTypes(fullPokemon)}`);
+
+            $('#pokemonSpecies').text(`Species: ${fullPokemon.species.name}`);
+            $('#pokemonHeight').text(`Height: ${fullPokemon.name}`);
+
+            $('#pokemonModal').modal('show');
+        })
+    });
+
+    function getTypes(fullPokemon) {
+        var numOfTypes = fullPokemon.types.length;
+        var types = "";
+
+        for(var i = 0; i< numOfTypes; i++) {
+            types = types + fullPokemon.types[i].type.name;
+            if (i < numOfTypes - 1)
+                types = types + "+";
+
+        }
+        return types.trim();
+    }
 });
 /*
 PARA EL COLOR DE CADA UNO DE LOS POKEMONS TENDRE QUE COGER EL ARRAY DE TIPOS 

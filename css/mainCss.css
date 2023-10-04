@@ -17,24 +17,24 @@ body{
     font-size: x-large;
 }
 
-.modal{
+.modalStyle{
     display: flex;
     flex-direction: column;
     font-family: 'Press Start 2P', cursive;
     width: 400px;
     height: 650px;
-    background: black;
+    background: black !important;
     position: relative;
+    color: white;
 }
 
-.modal::before{
+.modalStyle::before{
     content: "";
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background: linear-gradient(to bottom, rgba(248,208,48,0.8) 0%, rgba(248,208,48,0) 35% );
 }
 
 .styleContent{
@@ -42,9 +42,11 @@ body{
     color: white;
     --bs-modal-footer-border-color: none !important;
     --bs-modal-header-border-color:none !important;
-    position: absolute;
-    bottom: 0;
     font-size: x-large;
+    border: none !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .pokemonImageContainer{
@@ -58,4 +60,81 @@ body{
 #pokemonImage{
     width: 300px;
     z-index: 1;
+}
+
+.modal-header{
+    border-bottom:none !important;
+}
+
+/* Para cambiar el color del degradado */
+.normal{
+    background: linear-gradient(to bottom, rgba(178, 175, 162,0.8) 0%, rgba(248,208,48,0) 35% );
+}
+
+.fire{
+
+}
+
+.water{
+
+}
+
+.grass{
+
+}
+
+.flying{
+
+}
+
+.fighting{
+
+}
+
+.poison{
+
+}
+
+.electric{
+
+}
+
+.ground{
+
+}
+
+.rock{
+
+}
+
+.psychic{
+
+}
+
+.ice{
+
+}
+
+.bug{
+
+}
+
+.ghost{
+
+}
+
+.steel{
+
+}
+
+.dragon{
+
+}
+
+.dark{
+
+}
+
+.fairy{
+
 }
