@@ -11,28 +11,40 @@ $(document).ready(function () {
     });
     $.ajax({
         type: "GET",
-        url: "https://pokeapi.co/api/v2/pokemon/?limit=700"
+        url: `https://pokeapi.co/api/v2/pokemon/?limit=1200`
     }).done(function (resp) {
+        var numRenderedPokemon = 0;
         var pokeList = resp.results;
-        pokeList.forEach(i => {
-            $.ajax({
-                type: "GET",
-                url: i.url
-            }).done(function (poke) {
+        var numPages = Math.ceil(pokeList.length / 18);
 
-                var pokeId = poke.id;
-                var template = `
-                <button type="button" id="${pokeId}" data-bs-toggle="modal" data-bs-target="#pokeModal" class="col-xl-3 col-md-6 mb-2 mx-1 col-sm-12 pb-2
-                 border border-3 rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(poke)}!important;">
-                    <div class="w-75">
-                    <div class="row m-auto align-self-center p-1">
-                        <div class="col-5 p-0"><img src="https://img.pokemondb.net/sprites/home/normal/${poke.name}.png" alt="" class="w-75"/></div>
-                        <div class="col-6 text-center align-self-center p-0"><p class="text-start m-0">${poke.name}</p></div>
-                    </div>
-                    </div>
-                </button>`;
-                $('#pokeList').append(template);
-            });
+
+        for(var i = 1; i<= numPages; i++){
+            $('#pages').append(`<a href="#">${i}</a>`);
+        }
+
+
+        pokeList.forEach(i => {
+            if (numRenderedPokemon < 18) {
+                $.ajax({
+                    type: "GET",
+                    url: i.url
+                }).done(function (poke) {
+
+                    var pokeId = poke.id;
+                    var template = `
+                    <button type="button" id="${pokeId}" data-bs-toggle="modal" data-bs-target="#pokeModal" class="col-xl-3 col-md-6 mb-2 mx-1 col-sm-12 pb-2
+                     border border-3 rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(poke)}!important;">
+                        <div class="w-75">
+                        <div class="row m-auto align-self-center p-1">
+                            <div class="col-5 p-0"><img src="https://img.pokemondb.net/sprites/home/normal/${poke.name}.png" alt="" class="w-75"/></div>
+                            <div class="col-6 text-center align-self-center p-0"><p class="text-start m-0">${poke.name}</p></div>
+                        </div>
+                        </div>
+                    </button>`;
+                    $('#pokeList').append(template);
+                });
+            }
+            numRenderedPokemon++;
         });
 
     });
@@ -98,8 +110,6 @@ $(document).ready(function () {
             url: `https://pokeapi.co/api/v2/pokemon/${pokeId}`
         }).done(function (fullPokemon) {
 
-            var types = "";
-
             //Seteo toda la info
             $('.modal-content').addClass(`${fullPokemon.types[0].type.name}`);
             $('#pokemonImage').attr('src', `https://img.pokemondb.net/sprites/home/normal/${fullPokemon.name}.png`);
@@ -112,13 +122,14 @@ $(document).ready(function () {
 
             $('#pokemonModal').modal('show');
         })
+
     });
 
     function getTypes(fullPokemon) {
         var numOfTypes = fullPokemon.types.length;
         var types = "";
 
-        for(var i = 0; i< numOfTypes; i++) {
+        for (var i = 0; i < numOfTypes; i++) {
             types = types + fullPokemon.types[i].type.name;
             if (i < numOfTypes - 1)
                 types = types + "+";

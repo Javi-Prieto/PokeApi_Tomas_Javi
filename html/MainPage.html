@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 
-<body class="min-vh-100">
+<body class="">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top flex-column ">
     <div class="container-fluid" id="cfDiv">
       <div class="collapse navbar-collapse justify-content-center">
@@ -59,6 +59,11 @@
       </form>
     </div>
   </nav>
+
+  <!-- PAGINACION -->
+  <div id="pages" class="pages"></div>
+
+
   <main class="container-fluid w-75 pt-5 m-auto ">
     <div class="row justify-content-around d-flex " id="pokeList">
       <!-- Aquí se inserta el template -->
@@ -67,11 +72,11 @@
   </main>
 
   <!-- MODAL START -->
-  <div class="modal" tabindex="-1" id="pokemonModal" style="display: one !important;">
+  <div class="modal" tabindex="-1" id="pokemonModal">
     <div class="modal-dialog">
         <div class="modal-content modalStyle">
             <div class="modal-header z-1 p-0 d-flex justify-content-end">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">X</button>
+                <button type="button" class="btn btn-danger" id="closeModal" data-bs-dismiss="modal">X</button>
             </div>
 
             <div class="modal-body styleContent">
