@@ -5,7 +5,7 @@ $(document).ready(function () {
     const circleContainer = $("#circle-container");
     const radius = 357; 
     const angleStep = (2 * Math.PI) / itemCount;
-    var showTypeToggle = true;
+    var showTypeToggle = false;
 
     
     for (var i = 0; i < itemCount; i++) {
@@ -13,7 +13,7 @@ $(document).ready(function () {
         const y = radius * Math.sin(i * angleStep) + radius;
 
         var item = `
-            <button class = "circle-item btn" style= "top:${y}px; left:${x}px;">
+            <button class = "circle-item btn z-2" style= "top:${y}px; left:${x}px;">
                 <img src="../img/${i+1}.png" alt="" />
             </button>
         `;
@@ -55,6 +55,8 @@ $(document).ready(function () {
         }
         
     });
+
+    
    
     
     $(document).on('click', '#searchBtn', function () {
@@ -68,24 +70,26 @@ $(document).ready(function () {
         $('#xClose').hide();
     });
 
+    
     $.ajax({
         type: "GET",
         url: "https://pokeapi.co/api/v2/type/"
     }).done(resp => {
         var types = resp.results;
-        types.forEach(type => {
+        for(var i = 0; i <= 18; i++){
             var template = 
             `
-            <div class="col-lg-3 col-md-3 col-sm-6 border border-warning row bg-light">
-                <div class="col-6"><img src="../img/1.png" alt="" /></div>
-                <div class="col-6"><h6 class="h6">${type.name}</h6></div>
-            </div>
+            <button class="col-lg-3 col-md-3 col-sm-6 border rounded-3 row bg-light m-1" >
+                <div class ="w-75 ">
+                    <div class="col-4"><img src="../img/${i+1}.png" alt="" /></div>
+                    <div class="col-4 m-auto"><h6 class="h6 text-center">${types[i].name}</h6></div>
+                </div>
+            </button>
             `;
             $('#typesList').append(template);
-        });
+        }
         
     });
-    
 
     
 });
