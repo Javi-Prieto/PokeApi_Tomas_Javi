@@ -31,7 +31,6 @@ $(document).ready(function () {
                 $('#pokeList').append(template);
             });
         });
-        
     });
     function assignBorderColor(pokemon){
         var type = pokemon.types[0].type.name;
@@ -72,8 +71,6 @@ $(document).ready(function () {
                 return '#705746';
             case 'fairy':
                 return '#D685AD';
-            case 'shadow':
-                return 'darkgrey';
             default:
                 return 'black';
 
