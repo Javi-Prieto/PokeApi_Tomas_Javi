@@ -4,7 +4,10 @@ $(document).ready(function () {
         type: 'GET'
     }).done(function (resp) {
         var itemList = resp.results;
-
+        var numPages = Math.trunc((resp.count/20)+1);
+        console.log(numPages);
+        
+        
         itemList.forEach(item => { //Need to search for the specific items to get 
             //access to all the attributes
             $.ajax({
@@ -22,7 +25,17 @@ $(document).ready(function () {
                 $("#tableBody").append(template);
             });
         });
-    })
+        for(var i =0; i <= numPages; i++){
+            var url = 'https://pokeapi.co/api/v2/item/?offset=' + (20*i) + '&limit=' + ((20*i)+20);
+            var indexPage = i+1;
+            var template = 
+            `
+            <span class="page-link" pageUrl="${url}>${indexPage}</span>
+            `;
+            $('#itemsPagination').append(template);
+        }
+        
+    });
 
     $(document).on('click', '#searchBtn', function () {
         $('#collapseSearch').show();
