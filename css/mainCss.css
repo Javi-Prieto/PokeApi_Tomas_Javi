@@ -1,3 +1,5 @@
+
+
 nav{
     font-size: xx-large;
 }
@@ -10,9 +12,255 @@ body{
     background-attachment: fixed;
     background-size: 125%;
     background-position: -225px 0px;
+    overflow-x: hidden;
+    min-height: 100vh;
 }
 .pokeCards{
     background-color: rgb(235, 235, 235);
     font-family: 'Press Start 2P', cursive;
     font-size: x-large;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);    
+}
+
+.modal-header{
+    position: absolute;
+    right: 0;
+}
+
+.modalStyle{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Press Start 2P', cursive;
+    width: 400px;
+    height: 650px;
+    background: black;
+    position: relative;
+    color: white;
+    border: none !important;
+}
+
+.styleContent{
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    --bs-modal-footer-border-color: none !important;
+    --bs-modal-header-border-color:none !important;
+    font-size: x-large;
+    border: none !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top:0;
+}
+
+.pages{
+    position: fixed;
+    bottom: 0;
+    background-color: #0BB363;
+    height: 3vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.pages a{
+    text-decoration: none;
+    color: white;
+}
+
+.pokemonImageContainer{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pokemonImage{
+    width: 300px;
+    z-index: 1;
+}
+
+.modal-header{
+    border-bottom:none !important;
+}
+
+/* Para cambiar el color del degradado */
+.normal::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(178, 175, 162,1) 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.fire::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #EE8130 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.water::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom,#6390F0 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.grass::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #7AC74C 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.flying::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #A98FF3 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.fighting::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #C22E28 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.poison::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #A33EA1 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.electric::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #F7D02C 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.ground::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #E2BF65 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.rock::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #B6A136 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.psychic::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #F95587 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.ice::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #96D9D6 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.bug::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #A6B91A 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.ghost::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #735797 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.steel::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #B7B7CE 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.dragon::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #6F35FC 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.dark::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #705746 0%, rgba(248,208,48,0) 60%) !important;
+}
+
+.fairy::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #D685AD 0%, rgba(248,208,48,0) 60%) !important;
 }
