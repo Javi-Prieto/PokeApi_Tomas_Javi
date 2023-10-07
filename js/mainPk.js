@@ -10,41 +10,89 @@ $(document).ready(function () {
         $('#xClose').hide();
     });
 
-    var selectedPage = 0;
+    var selectedPage = 1;
     var numPages = Math.ceil(1200 / 18);
 
-    for (var i = 0; i <= numPages; i++) {
-        $('#pages').append(`<button id="Page${i}" class="btn btn-danger pageBtn" value=${i} >${i}</button>`);
-    }
+    //Colocar botones paginación
+    loadPageButtons(selectedPage);
+
+    $(document).on('click', '.page-link', function () {
+        loadPageButtons(this.value);
+    });
+
+    function loadPageButtons(selectedPage) {
+
+        if (selectedPage == 1) {
+            var pagingTemplate = `
+  <li class="page-item"><button value="${selectedPage}" class="page-link disabled">${selectedPage}</button></li>
+  <li class="page-item"><button value="${parseInt(selectedPage) + 1}" class="page-link" href="#">${parseInt(selectedPage) + 1}</button></li>
+  <li class="page-item">
+    <button id="next" class="page-link" value=${parseInt(selectedPage) + 1} aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+    </button>
+  </li>`;
+            $('#pagination').html("");
+            $('#pagination').append(pagingTemplate);
+
+        } else if (selectedPage == 2) {
+            var pagingTemplate = `
+  <li class="page-item"><button value="${parseInt(selectedPage) - 1}" class="page-link" >${parseInt(selectedPage) - 1}</button></li>
+  <li class="page-item"><button value="${selectedPage}" class="page-link disabled ">${selectedPage}</button></li>
+  <li class="page-item"><button value="${parseInt(selectedPage) + 1}" class="page-link ">${parseInt(selectedPage) + 1}</button></li>
+  <li class="page-item">
+    <button id="next" class="page-link" value=${parseInt(selectedPage) + 1}  aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+    </button>
+  </li>`;
+            $('#pagination').html("");
+            $('#pagination').append(pagingTemplate);
+
+        } else {
+            var pagingTemplate = `<li class="page-item">
+    <button id="previous" class="page-link" value=${parseInt(selectedPage) - 1} aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>
+    </button>
+  </li>
+  <li class="page-item"><button value="${parseInt(selectedPage) - 1}" class="page-link">${parseInt(selectedPage) - 1}</button></li>
+  <li class="page-item"><button value="${selectedPage}" class="page-link disabled">${selectedPage}</button></li>
+  <li class="page-item"><button value="${parseInt(selectedPage) + 1}" class="page-link">${parseInt(selectedPage) + 1}</button></li>
+  <li class="page-item">
+    <button id="next" class="page-link" value=${parseInt(selectedPage) + 1} aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+    </button>
+  </li>`;
+
+            $('#pagination').html("");
+            $('#pagination').append(pagingTemplate);
+        }
+    };
 
     //Initialize data
     loadPokemon(0);
 
-    $(document).on('click', ".pageBtn", function () {
+    $(document).on('click', ".page-link", function () {
         loadPokemon(this);
     });
 
 });
 
-function loadPokemon(clickedButton){
+function loadPokemon(selectedPage) {
     $('#pokeList').empty();
 
-        selectedPage= clickedButton.value;
+    $.ajax({
+        type: "GET",
+        url: `https://pokeapi.co/api/v2/pokemon/?limit=18&offset=${selectedPage.value * 18}`
+    }).done(function (resp) {
+        var pokeList = resp.results;
 
-        $.ajax({
-            type: "GET",
-            url: `https://pokeapi.co/api/v2/pokemon/?limit=18&offset=${selectedPage * 18}`
-        }).done(function (resp) {
-            var pokeList = resp.results;
+        pokeList.forEach(i => {
+            $.ajax({
+                type: "GET",
+                url: i.url
+            }).done(function (poke) {
 
-            pokeList.forEach(i => {
-                $.ajax({
-                    type: "GET",
-                    url: i.url
-                }).done(function (poke) {
-
-                    var pokeId = poke.id;
-                    var template = `
+                var pokeId = poke.id;
+                var template = `
                             <button type="button" id="${pokeId}" data-bs-toggle="modal" data-bs-target="#pokeModal" class="col-xl-3 col-md-6 mb-2 mx-1 col-sm-12 pb-2
                              border border-3 rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(poke)}!important;">
                                 <div class="w-75">
@@ -54,11 +102,11 @@ function loadPokemon(clickedButton){
                                 </div>
                                 </div>
                             </button>`;
-                    $('#pokeList').append(template);
-                });
-            })
+                $('#pokeList').append(template);
+            });
+        })
 
-        });
+    });
 }
 
 function assignBorderColor(pokemon) {
