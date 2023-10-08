@@ -107,6 +107,29 @@ function loadPokemon(selectedPage) {
         })
 
     });
+    $(document).on('click', '#findBtn', function () {
+        $('#pokeList').empty();
+        searchPokemon($('#searchInput').val());
+    });
+    function searchPokemon(name){
+        $.ajax({
+            type: "GET",
+            url:"https://pokeapi.co/api/v2/pokemon/" + name
+        }).done(pokemon =>{
+            var pokeId = pokemon.id;
+                var template = `
+                            <button type="button" id="${pokeId}" data-bs-toggle="modal" data-bs-target="#pokeModal" class="col-xl-3 col-md-6 mb-2 mx-1 col-sm-12 pb-2
+                             border border-3 rounded-3 d-flex p-0 pokeCards" style="border-color: ${assignBorderColor(pokemon)}!important;">
+                                <div class="w-75">
+                                <div class="row m-auto align-self-center p-1">
+                                    <div class="col-5 p-0"><img src="https://img.pokemondb.net/sprites/home/normal/${pokemon.name}.png" alt="" class="w-75"/></div>
+                                    <div class="col-6 text-center align-self-center p-0"><p class="text-start m-0">${pokemon.name}</p></div>
+                                </div>
+                                </div>
+                            </button>`;
+                $('#pokeList').append(template);
+        });
+    }
 }
 
 function assignBorderColor(pokemon) {
@@ -178,8 +201,8 @@ $(document).on("click", ".pokeCards", function () {
 
         $('#pokemonType').text(`Type: ${getTypes(fullPokemon)}`);
 
-        $('#pokemonSpecies').text(`Species: ${fullPokemon.species.name}`);
-        $('#pokemonHeight').text(`Height: ${fullPokemon.name}`);
+        $('#pokemonSpecies').text(`Hp: ${fullPokemon.stats[0].base_stat}`);
+        $('#pokemonHeight').text(`Height: ${fullPokemon.height}`);
 
         $('#pokemonModal').modal('show');
 
