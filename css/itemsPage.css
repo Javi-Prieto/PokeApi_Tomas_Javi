@@ -16,14 +16,19 @@ img{
 }
 
 .table {
-    font-family: 'Press Start 2P', cursive;
+    
     font-size: 1.5rem;
     width: 75vw;
     color: black;
     --bs-table-bg: #d9d9d9 !important;
     --bs-table-border-color: black !important;
 }
-
+#tableList{
+    font-family: 'Press Start 2P', cursive;
+}
+#tableList>ul>li + #tableList>ul{
+    background-color: #d9d9d9!important;
+}
 .tableBody {
     font-size: .8rem;
 }
